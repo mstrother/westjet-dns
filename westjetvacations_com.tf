@@ -1,7 +1,6 @@
 module "westjetvacations_com" {
   source     = "./modules/dns_zone"
   zone_name  = "westjetvacations.com"
-  resource_group_name = local.dns_resource_group
   www_ip     = "1.2.3.3"
   spf_record = "v=spf1 include:spf.protection.outlook.com -all"
 }
