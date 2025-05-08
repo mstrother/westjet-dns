@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write   # ✅ Required for Azure OIDC login
+  contents: read    # ✅ (default for checkout)
+
 jobs:
   terraform:
     name: 'Terraform Apply'
