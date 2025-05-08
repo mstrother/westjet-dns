@@ -13,8 +13,6 @@ jobs:
   terraform:
     name: 'Terraform Apply'
     runs-on: ubuntu-latest
-    environment:
-      name: terraform-apply
 
     steps:
       - name: Checkout code
