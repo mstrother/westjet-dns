@@ -55,6 +55,16 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Wait for manual approval
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: mstrother   # 👈 your GitHub username or a list (comma-separated)
+          minimum-approvals: 1
+          issue-title: "Terraform Apply Approval Required"
+          issue-body: "Please approve or deny the Terraform apply step."
+          exclude-workflow-initiator-as-approver: false
+
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
