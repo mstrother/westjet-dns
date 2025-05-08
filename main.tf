@@ -6,3 +6,9 @@ terraform {
     key                   = "dns-poc.tfstate"
   }
 }
+
+provider "azurerm" {
+  features {}
+
+  use_oidc = true
+}
