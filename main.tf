@@ -19,3 +19,7 @@ provider "azurerm" {
 
   use_oidc = true
 }
+
+locals {
+  dns_resource_group = "rg-westjet-dns"  # 👈 your real resource group name here
+}

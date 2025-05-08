@@ -1,7 +1,3 @@
-locals {
-  dns_resource_group = "rg-westjet-dns"  # 👈 your real resource group name here
-}
-
 variable "zone_name" {
   description = "The DNS zone name (e.g., westjet.com)."
   type        = string
