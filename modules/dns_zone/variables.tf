@@ -1,8 +1,3 @@
-variable "resource_group_name" {
-  description = "The Azure resource group to hold the DNS zone."
-  type        = string
-}
-
 variable "zone_name" {
   description = "The DNS zone name (e.g., westjet.com)."
   type        = string
