@@ -8,7 +8,10 @@ resource "azurerm_dns_a_record" "www" {
   zone_name           = azurerm_dns_zone.this.name
   resource_group_name = var.resource_group_name
   ttl                 = 300
-  records             = [var.www_ip]
+
+  record {
+    ipv4_address = var.www_ip
+  }
 }
 
 resource "azurerm_dns_txt_record" "spf" {
@@ -16,5 +19,8 @@ resource "azurerm_dns_txt_record" "spf" {
   zone_name           = azurerm_dns_zone.this.name
   resource_group_name = var.resource_group_name
   ttl                 = 3600
-  records             = [var.spf_record]
+
+  record {
+    value = var.spf_record
+  }
 }
