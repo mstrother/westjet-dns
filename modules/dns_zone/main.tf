@@ -4,6 +4,7 @@ locals {
 
 resource "azurerm_dns_zone" "this" {
   name                = var.zone_name
+  resource_group_name = local.dns_resource_group 
 }
 
 resource "azurerm_dns_a_record" "www" {
@@ -11,12 +12,14 @@ resource "azurerm_dns_a_record" "www" {
   zone_name           = azurerm_dns_zone.this.name
   ttl                 = 300
   records             = [var.www_ip]
+  resource_group_name = local.dns_resource_group 
 }
 
 resource "azurerm_dns_txt_record" "spf" {
   name                = "@"
   zone_name           = azurerm_dns_zone.this.name
   ttl                 = 3600
+  resource_group_name = local.dns_resource_group 
 
   record {
     value = var.spf_record

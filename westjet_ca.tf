@@ -8,7 +8,7 @@ module "westjet_ca" {
 resource "azurerm_dns_a_record" "westjet_ca_api" {
   name                = "api"
   zone_name           = module.westjet_ca.zone_name
-  resource_group_name = "rg-westjet-dns"
+  resource_group_name = local.dns_resource_group
   ttl                 = 300
   records             = ["4.5.6.8"]
 }
