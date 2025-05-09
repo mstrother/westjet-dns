@@ -29,3 +29,29 @@ resource "azurerm_dns_mx_record" "westjet_com_mx" {
     exchange   = "backupmail.westjet.com"
   }
 }
+
+resource "azurerm_dns_a_record" "westjet_com_support" {
+  name                = "support"
+  zone_name           = module.westjet_com.zone_name
+  resource_group_name = local.dns_resource_group
+  ttl                 = 300
+  records             = ["203.0.113.45"]
+}
+
+resource "azurerm_dns_mx_record" "westjet_com_additional_mx" {
+  name                = "@"
+  zone_name           = module.westjet_com.zone_name
+  resource_group_name = local.dns_resource_group
+  ttl                 = 3600
+
+  record {
+    preference = 5
+    exchange   = "mx1.altmail.westjet.com"
+  }
+
+  record {
+    preference = 10
+    exchange   = "mx2.altmail.westjet.com"
+  }
+}
+
