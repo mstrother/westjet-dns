@@ -12,3 +12,11 @@ resource "azurerm_dns_a_record" "westjet_ca_api" {
   ttl                 = 300
   records             = ["4.5.6.8"]
 }
+
+resource "azurerm_dns_a_record" "support" {
+  name                = "support"
+  zone_name           = module.westjet_ca.zone_name
+  resource_group_name = local.dns_resource_group
+  ttl                 = 300
+  records             = ["203.0.113.45"]
+}
