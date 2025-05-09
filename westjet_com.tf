@@ -12,3 +12,20 @@ resource "azurerm_dns_a_record" "westjet_com_api" {
   ttl                 = 300
   records             = ["4.5.6.7"]
 }
+
+resource "azurerm_dns_mx_record" "westjet_com_mx" {
+  name                = "@"
+  zone_name           = module.westjet_com.zone_name
+  resource_group_name = local.dns_resource_group  # 👈 from your locals
+  ttl                 = 3600
+
+  record {
+    preference = 10
+    exchange   = "mail.westjet.com"
+  }
+
+  record {
+    preference = 20
+    exchange   = "backupmail.westjet.com"
+  }
+}
